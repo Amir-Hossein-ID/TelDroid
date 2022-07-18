@@ -1,0 +1,32 @@
+{
+    "name": "Teldroid",
+    "description": "Telegram Userbot, Written in Python Using Telethon. ",
+    "keywords": [
+        "Telethon",
+        "telegram",
+        "userbot",
+        "python",
+        "teldroid"
+    ],
+    "repository": "https://github.com/FTGUPP/Teldroid",
+    "env": {
+        "API_ID": {
+            "description": "You api id, from my.telegram.org or @ScrapperRoBot.",
+            "value": ""
+        },
+        "API_HASH": {
+            "description": "You api hash, from my.telegram.org or @ScrapperRoBot.",
+            "value": ""
+        },
+        "SESSION": {
+            "description": "Your session string, Generate with @SessionStringBot or session_gen.py",
+            "value": ""
+        }
+    },
+    "formation": {
+        "teldroid": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
+}
