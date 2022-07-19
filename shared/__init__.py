@@ -7,6 +7,7 @@ import plugins
 
 userbot: TelegramClient
 plugin_manager: plugins.PluginManager
+handler = "."
 
 from shared.startup import start_bot
 from shared.decorators import command

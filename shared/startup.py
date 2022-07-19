@@ -16,3 +16,4 @@ def start_bot():
 
     plugin_manager.load_plugins()
     userbot.loop.run_until_complete(userbot.send_message('me', 'TelDroid is Online!'))
+    userbot.run_until_disconnected()
