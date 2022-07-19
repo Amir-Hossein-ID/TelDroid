@@ -9,6 +9,7 @@ class PluginManager:
     def __init__(self):
         self.all_plugins = {}
         self.loaded_plugins = {}
+        self.commands = {}
         self._find_plugins()
     
     def _find_plugins(self):
@@ -31,6 +32,7 @@ class PluginManager:
                 traceback.print_exc()
                 del self.loaded_plugins[plugin]
     
-    def add_event_handler(self, func, event):
+    def add_event_handler(self, name, func, event):
         shared.userbot.add_event_handler(func, event)
         self.loaded_plugins[func.__module__[len("plugins."):]].add(func)
+        self.commands[name] = func

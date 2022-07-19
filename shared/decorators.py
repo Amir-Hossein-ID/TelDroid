@@ -14,7 +14,7 @@ def command(name, takes_args = True, **kwargs):
         kwargs["outgoing"] = True
 
     def decorator(func):
-        shared.plugin_manager.add_event_handler(func, events.NewMessage(**kwargs))
+        shared.plugin_manager.add_event_handler(name, func, events.NewMessage(**kwargs))
         return func
     
     return decorator
