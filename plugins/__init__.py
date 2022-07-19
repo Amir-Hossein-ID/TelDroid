@@ -25,7 +25,7 @@ class PluginManager:
     def load_plugins(self):
         for plugin in self.all_plugins:
             try:
-                self.loaded_plugins[plugin] = []
+                self.loaded_plugins[plugin] = set()
                 self._load_plugin(plugin)
             except Exception as e:
                 traceback.print_exc()
@@ -33,4 +33,4 @@ class PluginManager:
     
     def add_event_handler(self, func, event):
         shared.userbot.add_event_handler(func, event)
-        self.loaded_plugins[func.__module__[len("plugins."):]].append((func))
+        self.loaded_plugins[func.__module__[len("plugins."):]].add(func)
