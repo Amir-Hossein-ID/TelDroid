@@ -36,3 +36,17 @@ async def unload(event):
     else:
         shared.plugin_manager.unload_plugin(name)
         await event.edit("Plugin `{}` unloaded.".format(name))
+
+@shared.command("plugins")
+async def plugins(event):
+    """`{shared.handler}plugins`
+    List loaded plugins."""
+    text = "All plugins:\n\n"
+    for plugin in sorted(shared.plugin_manager.loaded_plugins):
+        if plugin.startswith("_"):
+            continue
+        text += "✅ `{}`\n".format(plugin)
+    for plugin in sorted(shared.plugin_manager.all_plugins):
+        if plugin not in shared.plugin_manager.loaded_plugins:
+            text += "❌ `{}`\n".format(plugin)
+    await event.edit(text)
