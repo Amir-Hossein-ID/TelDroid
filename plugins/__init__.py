@@ -1,7 +1,6 @@
 import importlib
 import os
 import sys
-import traceback
 
 import shared
 
@@ -19,18 +18,30 @@ class PluginManager:
             plugin = plugin[:-3]
             self.all_plugins[plugin] = None
     
-    def _load_plugin(self, plugin):
-        importlib.import_module("plugins." + plugin)
-        self.all_plugins[plugin] = sys.modules["plugins." + plugin]
+    def load_plugin(self, plugin):
+        try:
+            self.loaded_plugins[plugin] = set()
+            importlib.import_module("plugins." + plugin)
+            self.all_plugins[plugin] = sys.modules["plugins." + plugin]
+            return True
+        except Exception as e:
+            shared.logger.error("Error loading plugin `{}`: {}".format(plugin, e))
+            del self.loaded_plugins[plugin]
+            return False
 
     def load_plugins(self):
         for plugin in self.all_plugins:
-            try:
-                self.loaded_plugins[plugin] = set()
-                self._load_plugin(plugin)
-            except Exception as e:
-                traceback.print_exc()
-                del self.loaded_plugins[plugin]
+            self.load_plugin(plugin)  
+
+    def unload_plugin(self, plugin):
+        for name in list(self.commands):
+            func = self.commands[name]
+            if func in self.loaded_plugins[plugin]:
+                shared.userbot.remove_event_handler(func)
+                del self.commands[name]
+        del self.loaded_plugins[plugin]
+        del sys.modules["plugins." + plugin]
+        return True
     
     def add_event_handler(self, name, func, event):
         shared.userbot.add_event_handler(func, event)
