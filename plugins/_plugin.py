@@ -31,6 +31,8 @@ async def unload(event):
         await event.edit("Plugin `{}` not found.".format(name))
     elif name not in shared.plugin_manager.loaded_plugins:
         await event.edit("Plugin `{}` is not loaded.".format(name))
+    elif name.startswith("_"):
+        await event.edit("Plugin `{}` is a required plugin and cannot be unloaded.".format(name))
     else:
         shared.plugin_manager.unload_plugin(name)
         await event.edit("Plugin `{}` unloaded.".format(name))
