@@ -1,2 +1,3 @@
 telethon
 python-dotenv
+redis
