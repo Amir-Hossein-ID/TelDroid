@@ -1,9 +1,9 @@
 import dotenv
 import logging
 
-import shared
+import shared.startup
 
 dotenv.load_dotenv()
 logging.basicConfig(level=logging.WARNING)
 
-shared.start_bot()
+shared.startup.start_bot()
