@@ -18,8 +18,16 @@
             "description": "You api hash, from my.telegram.org or @ScrapperRoBot.",
             "value": ""
         },
-        "SESSION": {
+        "SESSION_STRING": {
             "description": "Your session string, Generate with @SessionStringBot or session_gen.py",
+            "value": ""
+        },
+        "REDIS_URL": {
+            "description": "Redis database endpoint url, get from redislabs.com",
+            "value": ""
+        },
+        "REDIS_PASSWORD": {
+            "description": "Redis database password, get from redislabs.com",
             "value": ""
         }
     },

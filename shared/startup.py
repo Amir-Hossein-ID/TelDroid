@@ -6,7 +6,15 @@ from telethon.sessions import StringSession
 import plugins
 import shared
 
+
+def start_db():
+    if os.getenv("REDIS_URL", "") and os.getenv("REDIS_PASSWORD", ""):
+        shared.db = shared.RedisDB(os.getenv("REDIS_URL"), os.getenv("REDIS_PASSWORD"))
+    else:
+        shared.db = shared.SQLiteDB("data.db")
+
 def start_bot():
+    start_db()
     userbot = TelegramClient(StringSession(os.getenv('SESSION_STRING')), os.getenv('API_ID'), os.getenv('API_HASH'))
     userbot.start()
     plugin_manager = plugins.PluginManager()

@@ -1,13 +1,14 @@
-import os
-
 from telethon import TelegramClient
-from telethon.sessions import StringSession
+
+import logging
 
 import plugins
+from shared.helper import bash
+from shared.decorators import command
+from shared.db import RedisDB, SQLiteDB
 
 userbot: TelegramClient
 plugin_manager: plugins.PluginManager
 handler = "."
-
-from shared.startup import start_bot
-from shared.decorators import command
+db = None
+logger = logging.getLogger()
