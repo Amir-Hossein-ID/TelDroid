@@ -33,7 +33,7 @@ async def ls(event):
     if not files:
         await event.edit("Directory `{}` is empty.".format(directory))
         return
-    text = "In directory {}:\n".format(directory)
-    text += "\n".join(["[🗂] {}".format(f) for f in files if os.path.isdir(os.path.join(directory, f))]) + "\n"
-    text += "\n".join(["[📄] {}".format(f) for f in files if not os.path.isdir(os.path.join(directory, f))])
-    await event.edit(text, parse_mode=None)
+    text = "In directory `{}`:\n".format(directory)
+    text += "\n".join(["[🗂] `{}`".format(f) for f in files if os.path.isdir(os.path.join(directory, f))]) + "\n"
+    text += "\n".join(["[📄] `{}`".format(f) for f in files if not os.path.isdir(os.path.join(directory, f))])
+    await event.edit(text)
