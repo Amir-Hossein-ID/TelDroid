@@ -1,4 +1,4 @@
 .env
 __pycache__
 data.db
-downloads
+files

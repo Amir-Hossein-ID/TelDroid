@@ -13,7 +13,7 @@ async def upload(event):
     if not file:
         await event.edit("Usage: `{}upload <file>`".format(shared.handler))
         return
-    if not os.path.exists(file):
+    if not os.path.isfile(file):
         await event.edit("File `{}` not found.".format(file))
         return
     async def progress(current, total):
@@ -38,9 +38,9 @@ async def download(event):
         return
     async def progress(current, total):
         if current == total:
-            await event.edit("Downloaded successfully in `downloads` folder.")
+            await event.edit("Downloaded successfully in `files` folder.")
         else:
             await event.edit("Downloading... {:.2f}mb / {:.2f}mb".format(current / (1024*1024), total / (1024*1024)))
     await event.edit("Downloading...")
     name = reply.file.name.translate(str.maketrans("", "", ":/\\?%*|\"<>'\n"))
-    await reply.download_media("downloads/"+name, progress_callback=progress)
+    await reply.download_media("files/"+name, progress_callback=progress)
