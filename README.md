@@ -4,7 +4,6 @@ Telegram Userbot, Written in Python Using [Telethon](https://github.com/LonamiWe
 <br/>
 
 # How To Deploy
-You need to install [7-zip](https://www.7-zip.org/) on your system. (And add it to your PATH variable if needed.)
 - [Heroku](#deploy-to-heroku)
 - [Locally](#deploy-locally)
 
@@ -22,6 +21,7 @@ Prepare the [Required Variables](#required-variables) and then click the button 
     API_HASH=aaaaaaaaaaaaaaaaaaa
     SESSION_STRING=asdjaskd86qq3eh3qjke3g3ke3h
     ```
+- You need to install [7-zip](https://www.7-zip.org/) on your system. (And add it to your PATH variable if needed.)
 - Run the bot by running `python teldroid.py` or `python3 teldroid.py`
 
 # Required Variables
